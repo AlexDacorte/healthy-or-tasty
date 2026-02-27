@@ -1,0 +1,31 @@
+<mat-card class="recipe-card" appearance="filled">
+  <mat-card-header>
+    <mat-card-title class="card-title">{{ recipeData()?.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list class="recipe-info">
+      <mat-list-item>
+        <mat-icon>access_time</mat-icon>
+        {{ recipeData()?.cookTime }}
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>local_fire_department</mat-icon>
+        {{ recipeData()?.calories }}
+      </mat-list-item>
+    </mat-list>
+    <img
+      class="recipe-image"
+      mat-card-image
+      [src]="recipeData()?.image"
+      [alt]="recipeData()?.title"
+    />
+    <div class="recipe-overlay"></div>
+    <ul class="recipe-tags">
+      @for (tag of recipeData()?.tags; track $index) {
+        <li>
+          <mat-basic-chip>{{ tag }}</mat-basic-chip>
+        </li>
+      }
+    </ul>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,74 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 50%;
+}
+
+.tasty_selected,
+.tasty_selected a {
+  background-color: #f47825;
+  color: aliceblue;
+  border-radius: 20px !important;
+}
+
+.tasty_unselected,
+.tasty_unselected a {
+  background-color: #f3f1ed;
+  border-radius: 20px !important;
+  color: #251d18;
+}
+
+.healthy_unselected,
+.healthy_unselected a {
+  background-color: #f3f1ed;
+  border-radius: 20px !important;
+  color: #251d18;
+}
+
+.healthy_selected,
+.healthy_selected a {
+  background-color: #36a15d;
+  color: aliceblue;
+  border-radius: 20px !important;
+}
+
+.home ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  gap: 5px;
+}
+
+.dislike-fab-button {
+  border: solid 1px #e84141;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.like-fab-button {
+  background-color: #36a15d;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+}
+
+.fab-buttons-actions {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.fab-buttons-actions button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+.fab-buttons-actions button:active {
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+}

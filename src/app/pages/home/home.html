@@ -1,0 +1,24 @@
+<section class="home">
+  <nav>
+    <ul>
+      <li [class.healthy_selected]="isHealthySelected" [class.healthy_unselected]="isTastySelected">
+        <a mat-button (click)="getFilteredRecipes('healthy')"
+          ><mat-icon>restaurant</mat-icon>Healthy</a
+        >
+      </li>
+      <li [class.tasty_selected]="isTastySelected" [class.tasty_unselected]="isHealthySelected">
+        <a mat-button (click)="getFilteredRecipes('tasty')"><mat-icon>fastfood</mat-icon>Tasty</a>
+      </li>
+    </ul>
+  </nav>
+  <app-recipe-card [recipeData]="recipeData()"></app-recipe-card>
+
+  <div class="fab-buttons-actions">
+    <button mat-fab class="dislike-fab-button">
+      <mat-icon style="color: #e84141">close</mat-icon>
+    </button>
+    <button mat-fab class="like-fab-button">
+      <mat-icon style="color: aliceblue">favorite</mat-icon>
+    </button>
+  </div>
+</section>

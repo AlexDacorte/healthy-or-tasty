@@ -1,0 +1,46 @@
+<section class="search-page">
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput />
+  </mat-form-field>
+
+  <mat-chip-listbox>
+    <mat-chip>Chip 1</mat-chip>
+    <mat-chip>Chip 2</mat-chip>
+    <mat-chip>Chip 3</mat-chip>
+  </mat-chip-listbox>
+
+  <div class="filter-by-section">
+    <mat-chip-row class="filter-by-tag">
+      <mat-basic-chip>
+        <a mat-button>Tag 1</a>
+      </mat-basic-chip>
+      <mat-basic-chip>
+        <a mat-button>Tag 2</a>
+      </mat-basic-chip>
+      <mat-basic-chip>
+        <a mat-button>Tag 3</a>
+      </mat-basic-chip>
+    </mat-chip-row>
+    <mat-chip-row class="filter-by-origin">
+      <mat-basic-chip>
+        <a mat-button>Origin 1</a>
+      </mat-basic-chip>
+      <mat-basic-chip>
+        <a mat-button>Origin 2</a>
+      </mat-basic-chip>
+      <mat-basic-chip>
+        <a mat-button>Origin 3</a>
+      </mat-basic-chip>
+    </mat-chip-row>
+  </div>
+  <p>{{ recipes().length }} built-in recipes</p>
+
+  <mat-grid-list class="gallery-grid" cols="2" rowHeight="1:1" gutterSize="12px">
+    @for (recipe of recipes(); track recipe.id) {
+      <mat-grid-tile colspan="1" rowspan="1">
+        <app-gallery-card [recipeData]="recipe"></app-gallery-card>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+</section>
