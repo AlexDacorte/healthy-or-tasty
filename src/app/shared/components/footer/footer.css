@@ -17,6 +17,7 @@
 
 a {
   text-decoration: none;
+  color: #95918f;
 }
 
 p {
@@ -27,6 +28,5 @@ p {
 
 a:hover,
 p:hover {
-  color: #95918f;
   background-color: none;
 }

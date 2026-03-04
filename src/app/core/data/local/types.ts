@@ -14,6 +14,20 @@ export type Recipe = {
   nutrition: { protein: number; carbs: number; fat: number; fiber: number };
 };
 
-export type TitlePage = 'Foodie' | 'Search Recipes' | 'Favorites' | 'Plan' | 'Shopping List';
+export type TitlePageType = 'Foodie' | 'Search Recipes' | 'Favorites' | 'Plan' | 'Shopping List';
 
 export type HeaderIcon = 'restaurant' | 'calendar_today' | 'favorite' | 'shopping_cart' | 'search';
+
+type PlanDayType =
+  | 'monday'
+  | 'tuesday'
+  | 'wednesday'
+  | 'thursday'
+  | 'friday'
+  | 'saturday'
+  | 'sunday';
+
+export type PlanByDayType = {
+  day: PlanDayType;
+  recipes: Recipe[];
+};

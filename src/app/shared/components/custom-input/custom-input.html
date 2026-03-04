@@ -1,0 +1,6 @@
+<form class="custom-form">
+  @if (icon()) {
+    <mat-icon>{{ icon() }}</mat-icon>
+  }
+  <input class="custom-input" type="text" [placeholder]="placeholder()" />
+</form>

@@ -6,7 +6,7 @@
 .filter-by-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
 }
 .filter-by-tag {
@@ -29,4 +29,8 @@ mat-chip,
 mat-basic-chip {
   border: solid 1px #e5e2dc;
   border-radius: 20px;
+}
+
+.search-bar {
+  padding: 10px;
 }

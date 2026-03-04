@@ -1,1 +1,3 @@
-<p>plan works!</p>
+@for (day of planByDay(); track day.day) {
+  <app-plan-card [planByDay]="day"></app-plan-card>
+}

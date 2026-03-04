@@ -1,6 +1,5 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { TitlePage } from '@/app/core/data/local/types';
 import { RecipeService } from '@/app/core/services/recipe-service';
 import { IconSelectorPipe } from '@/app/shared/pipes/icon-selector-pipe';
 

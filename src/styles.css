@@ -6,11 +6,6 @@ body {
   border-style: none !important;
 }
 
-.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field
-  .mdc-notched-outline__notch {
-  border-left: 30px !important;
-}
-
-.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
-  border-color: #e5e2dc !important;
+.mat-mdc-form-field-infix {
+  padding: 0 !important;
 }

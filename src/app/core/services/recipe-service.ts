@@ -3,7 +3,7 @@ import { Recipe } from '../data/local/types';
 import { recipes } from '../data/local/recipes';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
-import { TitlePage } from '../data/local/types';
+import { TitlePageType } from '../data/local/types';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class RecipeService {
   private recipeData = signal<Recipe[]>(recipes);
   filteredRecipeData = signal<Recipe[]>([]);
   recipes = computed(() => this.recipeData());
-  title = signal<TitlePage>('Foodie');
+  title = signal<TitlePageType>('Foodie');
   constructor(private router: Router) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))

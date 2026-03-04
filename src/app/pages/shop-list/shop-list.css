@@ -1,0 +1,16 @@
+.shopping-list-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-button {
+  background-color: #36a15d;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-icon {
+  color: aliceblue;
+}

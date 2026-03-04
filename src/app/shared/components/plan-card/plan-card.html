@@ -1,0 +1,28 @@
+<mat-card class="plan-card">
+  <mat-card-header>
+    <mat-card-title>{{ planByDay()?.day }}</mat-card-title>
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-header>
+  @for (recipe of planByDay()?.recipes; track recipe.id) {
+    <mat-card-content class="recipe-card">
+      <div class="recipe-description">
+        <img mat-card-avatar [src]="recipe.image" alt="{{ recipe.title }}" />
+        <div class="recipe-info">
+          <strong>{{ recipe.title }}</strong>
+          <p>{{ recipe.calories }} calories</p>
+        </div>
+      </div>
+      <mat-card-actions class="recipe-actions">
+        <button mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  } @empty {
+    <mat-card-content class="empty-recipe-card">
+      <p>No meals planned</p>
+    </mat-card-content>
+  }
+</mat-card>
