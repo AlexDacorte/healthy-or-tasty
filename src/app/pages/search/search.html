@@ -12,26 +12,26 @@
   <div class="filter-by-section">
     <mat-chip-row class="filter-by-tag">
       @for (tag of uniqueTags(); track tag) {
-      <mat-basic-chip>
-        <a mat-button>{{ tag }}</a>
-      </mat-basic-chip>
+        <mat-basic-chip>
+          <a mat-button>{{ tag }}</a>
+        </mat-basic-chip>
       }
     </mat-chip-row>
     <mat-chip-row class="filter-by-origin">
       @for (cuisine of uniqueCousines(); track cuisine) {
-      <mat-basic-chip>
-        <a mat-button>{{ cuisine }}</a>
-      </mat-basic-chip>
+        <mat-basic-chip>
+          <a mat-button>{{ cuisine }}</a>
+        </mat-basic-chip>
       }
     </mat-chip-row>
   </div>
-  <p>{{ recipes().length }} built-in recipes</p>
+  <p>{{ cardModels.length }} built-in recipes</p>
 
-  <mat-grid-list class="gallery-grid" cols="2" rowHeight="1:1" gutterSize="12px">
-    @for (recipe of recipes(); track recipe.id) {
-    <mat-grid-tile colspan="1" rowspan="1">
-      <app-gallery-card [recipeData]="recipe"></app-gallery-card>
-    </mat-grid-tile>
+  <mat-grid-list class="gallery-grid" cols="2" rowHeight="1:0.8">
+    @for (cardModel of cardModels; track cardModel) {
+      <mat-grid-tile colspan="1" rowspan="1">
+        <app-gallery-card [cardModel]="cardModel"></app-gallery-card>
+      </mat-grid-tile>
     }
   </mat-grid-list>
 </section>

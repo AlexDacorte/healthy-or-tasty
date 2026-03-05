@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Recipe } from '@core/data/local/types';
+import { CardModel } from '@core/data/local/model';
 
 @Component({
   selector: 'app-gallery-card',
@@ -11,5 +11,5 @@ import { Recipe } from '@core/data/local/types';
   styleUrl: './gallery-card.css',
 })
 export class GalleryCard {
-  recipeData = input<Recipe>();
+  cardModel = input<CardModel>();
 }

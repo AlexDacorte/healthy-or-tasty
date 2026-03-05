@@ -94,4 +94,9 @@ mat-list-item span {
   color: aliceblue !important;
   font-size: 1rem;
   vertical-align: middle;
+  width: fit-content;
+}
+
+mat-icon {
+  margin-top: 0.5rem;
 }

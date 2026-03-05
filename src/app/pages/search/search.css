@@ -8,27 +8,34 @@
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  white-space: nowrap;
 }
 .filter-by-tag {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  font-size: 0.5rem;
 }
 
+.filter-by-tag mat-basic-chip a {
+  font-size: 0.6rem;
+}
 .filter-by-origin {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
   font-size: 1rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
 }
 
 mat-chip,
 mat-basic-chip {
   border: solid 1px #e5e2dc;
   border-radius: 20px;
+  height: fit-content;
 }
 
 .search-bar {

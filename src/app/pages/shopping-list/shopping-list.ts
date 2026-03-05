@@ -5,9 +5,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 @Component({
-  selector: 'app-shop-list',
+  selector: 'app-shopping-list',
   imports: [CustomInput, MatCardModule, MatFormFieldModule, MatButtonModule, MatIconModule],
-  templateUrl: './shop-list.html',
-  styleUrl: './shop-list.css',
+  templateUrl: './shopping-list.html',
+  styleUrl: './shopping-list.css',
 })
-export class ShopList { }
+export class ShoppingList {}

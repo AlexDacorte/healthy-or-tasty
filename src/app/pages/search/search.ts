@@ -27,9 +27,17 @@ import { CustomInput } from '@shared/components/custom-input/custom-input';
 export class Search {
   private recipeService = inject(RecipeService);
   searchQuery = '';
-  recipes = signal(this.recipeService.recipes());
-  tags = signal(this.recipeService.recipes().map((recipe) => recipe.tags));
-  uniqueTags = signal(this.tags().flat().filter((tag, index, self) => self.indexOf(tag) === index));
-  cousines = signal(this.recipeService.recipes().map((recipe) => recipe.cuisine));
-  uniqueCousines = signal(this.cousines().filter((cuisine, index, self) => self.indexOf(cuisine) === index));
+  cardModels = this.recipeService.getCardModel();
+  tags = signal(this.recipeService.getCardModel().map((CardModel) => CardModel.getRecipeTags()));
+  uniqueTags = signal(
+    this.tags()
+      .flat()
+      .filter((tag, index, self) => self.indexOf(tag) === index),
+  );
+  cousines = signal(
+    this.recipeService.getCardModel().map((CardModel) => CardModel.getRecipeCuisine()),
+  );
+  uniqueCousines = signal(
+    this.cousines().filter((cuisine, index, self) => self.indexOf(cuisine) === index),
+  );
 }

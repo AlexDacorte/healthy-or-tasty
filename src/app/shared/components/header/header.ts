@@ -1,7 +1,7 @@
-import { Component, computed } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RecipeService } from '@/app/core/services/recipe-service';
 import { IconSelectorPipe } from '@/app/shared/pipes/icon-selector-pipe';
+import { TitleService } from '@/app/core/services/title-service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +10,6 @@ import { IconSelectorPipe } from '@/app/shared/pipes/icon-selector-pipe';
   styleUrl: './header.css',
 })
 export class Header {
-  constructor(private recipeService: RecipeService) {}
-  currentTitle = computed(() => this.recipeService.title());
+  titleService = inject(TitleService);
+  currentTitle = this.titleService.currentTitle;
 }

@@ -1,3 +1,4 @@
+import { CardModel } from './../data/local/model';
 import { Injectable, signal, computed } from '@angular/core';
 import { Recipe } from '../data/local/types';
 import { recipes } from '../data/local/recipes';
@@ -5,16 +6,15 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { TitlePageType } from '../data/local/types';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
   private recipeData = signal<Recipe[]>(recipes);
   filteredRecipeData = signal<Recipe[]>([]);
-  recipes = computed(() => this.recipeData());
   favorites = signal<Recipe[]>([]);
   title = signal<TitlePageType>('Foodie');
+  cardModels: CardModel[];
   constructor(private router: Router) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -22,6 +22,7 @@ export class RecipeService {
         this.selectTitle(event.url);
       });
     this.getFilteredRecipes('healthy');
+    this.cardModels = this.recipeData().map((recipe) => new CardModel(recipe));
   }
 
   selectTitle(url: string) {
@@ -42,7 +43,7 @@ export class RecipeService {
         this.title.set('Search Recipes');
         console.log(url);
         break;
-      case '/shop-list':
+      case '/shopping-list':
         this.title.set('Shopping List');
         console.log(url);
         break;
@@ -68,12 +69,13 @@ export class RecipeService {
     this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.calories < calories));
   }
 
-
-
   saveToLocalStorage(recipes: Recipe[]) {
     localStorage.setItem('recipe', JSON.stringify(recipes));
   }
 
+  getCardModel(): CardModel[] {
+    return this.cardModels;
+  }
   onRecipeChange(): Recipe {
     const currentRecipe = this.filteredRecipeData().shift()!;
     const nonFilteredData = this.recipeData().filter((recipe) => recipe.id !== currentRecipe.id);

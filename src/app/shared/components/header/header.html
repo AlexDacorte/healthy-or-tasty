@@ -1,4 +1,7 @@
-<div [class.header-center]="currentTitle() === 'Foodie'" [class.header-left]="currentTitle() !== 'Foodie'">
+<div
+  [class.header-center]="currentTitle() === 'Foodie'"
+  [class.header-left]="currentTitle() !== 'Foodie'"
+>
   <mat-icon class="header-icon">{{ currentTitle() | iconSelector }}</mat-icon>
   <h2>{{ currentTitle() }}</h2>
 </div>

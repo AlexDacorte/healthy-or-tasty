@@ -1,0 +1,47 @@
+import { Recipe } from './types';
+
+export class CardModel {
+  constructor(private recipe: Recipe) {}
+  getTitleAndRecipe(): string {
+    return `${this.recipe.title} - ${this.recipe.category}`;
+  }
+  getCookTime(): string {
+    return `${this.recipe.cookTime}m`;
+  }
+  getCalories(): string {
+    return `${this.recipe.calories}cal`;
+  }
+  getRecipeImage(): string {
+    return this.recipe.image;
+  }
+  getRecipeTitle(): string {
+    return this.recipe.title;
+  }
+  getRecipeCategory(): string {
+    return this.recipe.category;
+  }
+  getRecipePrepTime(): string {
+    return `${this.recipe.prepTime}m`;
+  }
+  getRecipeServings(): string {
+    return `${this.recipe.servings}`;
+  }
+  getRecipeCuisine(): string {
+    return this.recipe.cuisine;
+  }
+  getRecipeTags(): string[] {
+    return this.recipe.tags;
+  }
+  getRecipeIngredients(): { name: string; amount: string; category: string }[] {
+    return this.recipe.ingredients;
+  }
+  getRecipeSteps(): string[] {
+    return this.recipe.steps;
+  }
+  getRecipeNutrition(): { protein: number; carbs: number; fat: number; fiber: number } {
+    return this.recipe.nutrition;
+  }
+  setRecipe(recipe: Recipe): void {
+    this.recipe = recipe;
+  }
+}
