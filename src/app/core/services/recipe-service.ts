@@ -12,6 +12,7 @@ export class RecipeService {
   private recipeData = signal<Recipe[]>(recipes);
   filteredRecipeData = signal<Recipe[]>([]);
   recipes = computed(() => this.recipeData());
+  favorites = signal<Recipe[]>([]);
   title = signal<TitlePageType>('Foodie');
   constructor(private router: Router) {
     this.router.events
@@ -26,18 +27,23 @@ export class RecipeService {
     switch (url) {
       case '/':
         this.title.set('Foodie');
+        console.log(url);
         break;
       case '/plan':
         this.title.set('Plan');
+        console.log(url);
         break;
       case '/favorites':
         this.title.set('Favorites');
+        console.log(url);
         break;
       case '/search':
         this.title.set('Search Recipes');
+        console.log(url);
         break;
       case '/shop-list':
         this.title.set('Shopping List');
+        console.log(url);
         break;
     }
   }
@@ -54,5 +60,10 @@ export class RecipeService {
     const nonFilteredData = this.recipeData().filter((recipe) => recipe.id !== currentRecipe.id);
     this.saveToLocalStorage(nonFilteredData);
     return currentRecipe;
+  }
+
+  onFavoriteChange(recipe: Recipe) {
+    this.favorites.set([...this.favorites(), recipe]);
+    this.saveToLocalStorage(this.favorites());
   }
 }

@@ -10,4 +10,4 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './shop-list.html',
   styleUrl: './shop-list.css',
 })
-export class ShopList {}
+export class ShopList { }

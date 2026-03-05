@@ -1,1 +1,9 @@
-<p>favorites works!</p>
+<div class="favorites-container">
+    @if (favorites().length === 0) {
+    <p>No favorites yet</p>
+    } @else {
+    @for (recipe of favorites(); track recipe.id) {
+    <app-recipe-card [recipeData]="recipe"></app-recipe-card>
+    }
+    }
+</div>

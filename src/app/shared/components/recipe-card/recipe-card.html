@@ -13,18 +13,13 @@
         {{ recipeData()?.calories }}
       </mat-list-item>
     </mat-list>
-    <img
-      class="recipe-image"
-      mat-card-image
-      [src]="recipeData()?.image"
-      [alt]="recipeData()?.title"
-    />
+    <img class="recipe-image" mat-card-image [src]="recipeData()?.image" [alt]="recipeData()?.title" />
     <div class="recipe-overlay"></div>
     <ul class="recipe-tags">
       @for (tag of recipeData()?.tags; track $index) {
-        <li>
-          <mat-basic-chip>{{ tag }}</mat-basic-chip>
-        </li>
+      <li>
+        <mat-basic-chip>{{ tag }}</mat-basic-chip>
+      </li>
       }
     </ul>
   </mat-card-content>

@@ -2,15 +2,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.add-button {
-  background-color: #36a15d;
+  gap: 10px;
 }
 
-mat-form-field {
-  width: 100%;
+.qty-button {
+  background-color: #36a15d;
+  flex: 1;
 }
 
 mat-icon {
   color: aliceblue;
+}
+
+.search-input {
+  flex: 8;
+}
+
+.qty-input {
+  flex: 2;
 }
