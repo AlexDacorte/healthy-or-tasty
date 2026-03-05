@@ -3,7 +3,7 @@
     <p>No favorites yet</p>
     } @else {
     @for (recipe of favorites(); track recipe.id) {
-    <app-recipe-card [recipeData]="recipe"></app-recipe-card>
+    <app-gallery-card [recipeData]="recipe"></app-gallery-card>
     }
     }
 </div>

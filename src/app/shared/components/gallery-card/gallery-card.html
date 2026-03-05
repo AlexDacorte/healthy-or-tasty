@@ -1,22 +1,17 @@
 <mat-card class="gallery-card">
   <mat-card-content>
-    <img
-      mat-card-image
-      class="recipe-image"
-      [src]="recipeData()?.image"
-      alt="{{ recipeData()?.title }}"
-    />
+    <img mat-card-image class="recipe-image" [src]="recipeData()?.image" alt="{{ recipeData()?.title }}" />
     <mat-card-header>
       <mat-card-title class="card-title">{{ recipeData()?.title }}</mat-card-title>
 
       <div class="recipe-info">
         <span class="recipe-time">
           <mat-icon>access_time</mat-icon>
-          {{ recipeData()?.cookTime }}
+          <span>{{ recipeData()?.cookTime }}</span>
         </span>
         <span class="recipe-calories">
           <mat-icon>local_fire_department</mat-icon>
-          {{ recipeData()?.calories }}
+          <span>{{ recipeData()?.calories }}</span>
         </span>
       </div>
     </mat-card-header>

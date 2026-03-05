@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { RecipeService } from '@/app/core/services/recipe-service';
-import { RecipeCardComponent } from '@/app/shared/components/recipe-card/recipe-card';
+import { GalleryCard } from "@/app/shared/components/gallery-card/gallery-card";
 
 @Component({
   selector: 'app-favorites',
-  imports: [RecipeCardComponent],
+  imports: [GalleryCard],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })

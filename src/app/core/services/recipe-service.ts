@@ -5,6 +5,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { TitlePageType } from '../data/local/types';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -50,6 +51,24 @@ export class RecipeService {
   getFilteredRecipes(category: 'healthy' | 'tasty') {
     this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.category === category));
   }
+
+  onFilterByCuisine(cuisine: string) {
+    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.cuisine === cuisine));
+  }
+
+  onFilterByTag(tag: string) {
+    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.tags.includes(tag)));
+  }
+
+  onFilterByCookTime(cookTime: number) {
+    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.cookTime < cookTime));
+  }
+
+  onFilterByCalories(calories: number) {
+    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.calories < calories));
+  }
+
+
 
   saveToLocalStorage(recipes: Recipe[]) {
     localStorage.setItem('recipe', JSON.stringify(recipes));

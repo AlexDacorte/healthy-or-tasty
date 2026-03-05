@@ -6,11 +6,11 @@
     <mat-list class="recipe-info">
       <mat-list-item>
         <mat-icon>access_time</mat-icon>
-        {{ recipeData()?.cookTime }}
+        <span>{{ recipeData()?.cookTime }}</span>
       </mat-list-item>
       <mat-list-item>
         <mat-icon>local_fire_department</mat-icon>
-        {{ recipeData()?.calories }}
+        <span>{{ recipeData()?.calories }}</span>
       </mat-list-item>
     </mat-list>
     <img class="recipe-image" mat-card-image [src]="recipeData()?.image" [alt]="recipeData()?.title" />

@@ -38,4 +38,8 @@ export class Home implements OnInit {
     }
     this.recipeService.getFilteredRecipes(category);
   }
+
+  onFavoriteChange(recipe: Recipe) {
+    this.recipeService.onFavoriteChange(recipe);
+  }
 }

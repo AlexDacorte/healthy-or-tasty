@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  color: aliceblue;
+  color: aliceblue !important;
   border-radius: 20px;
 }
 
@@ -17,6 +17,7 @@
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
+
 .recipe-overlay {
   position: absolute;
   inset: 0;
@@ -24,6 +25,7 @@
   z-index: 1;
   border-radius: 20px;
 }
+
 .recipe-tags {
   display: flex;
   list-style: none;
@@ -35,16 +37,18 @@
 }
 
 .recipe-tags li {
-  border: solid 1px aliceblue;
   border-radius: 20px;
-  padding: 5px;
-  margin: 0;
   font-size: 0.8rem;
   z-index: 2;
+  background-color: #36a15d;
+  font-size: 0.7rem;
+  padding: 1px 5px;
 }
+
 mat-card-header {
   z-index: 2;
 }
+
 mat-card-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -60,10 +64,15 @@ mat-card-title {
   margin: 0;
   padding: 0;
   z-index: 2;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .recipe-info mat-list-item {
   width: fit-content;
+
   z-index: 2;
 }
 
@@ -78,4 +87,11 @@ mat-card-title {
   .recipe-card {
     width: 100vw;
   }
+}
+
+mat-icon,
+mat-list-item span {
+  color: aliceblue !important;
+  font-size: 1rem;
+  vertical-align: middle;
 }
