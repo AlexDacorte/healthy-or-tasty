@@ -83,8 +83,12 @@ export class RecipeService {
     return currentRecipe;
   }
 
-  onFavoriteChange(recipe: Recipe) {
-    this.favorites.set([...this.favorites(), recipe]);
-    this.saveToLocalStorage(this.favorites());
+  onFavoriteChange(newRecipe: Recipe) {
+    this.recipeData.update((recipes) =>
+      recipes.map((recipe) =>
+        recipe.id === newRecipe.id ? (recipe.favorite = !newRecipe.favorite) : recipe,
+      ),
+    );
+    this.saveToLocalStorage(this.recipeData());
   }
 }

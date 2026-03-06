@@ -2,8 +2,11 @@ import { Recipe } from './types';
 
 export class CardModel {
   constructor(private recipe: Recipe) {}
-  getTitleAndRecipe(): string {
-    return `${this.recipe.title} - ${this.recipe.category}`;
+  getRecipe(): Recipe {
+    return this.recipe;
+  }
+  getTitle(): string {
+    return this.recipe.title;
   }
   getCookTime(): string {
     return `${this.recipe.cookTime}m`;
@@ -40,6 +43,9 @@ export class CardModel {
   }
   getRecipeNutrition(): { protein: number; carbs: number; fat: number; fiber: number } {
     return this.recipe.nutrition;
+  }
+  getRecipeFavorite(): boolean {
+    return this.recipe.favorite;
   }
   setRecipe(recipe: Recipe): void {
     this.recipe = recipe;

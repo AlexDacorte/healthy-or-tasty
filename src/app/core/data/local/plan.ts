@@ -8,6 +8,7 @@ export const planByDayData: PlanByDayType[] = [
         id: 'h1',
         title: 'Quinoa Buddha Bowl',
         category: 'healthy',
+        favorite: true,
         image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
         prepTime: 15,
         cookTime: 20,

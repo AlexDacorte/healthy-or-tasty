@@ -1,14 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { RecipeService } from '@/app/core/services/recipe-service';
-import { GalleryCard } from "@/app/shared/components/gallery-card/gallery-card";
+import { GalleryCard } from '@/app/shared/components/gallery-card/gallery-card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-favorites',
-  imports: [GalleryCard],
+  imports: [GalleryCard, MatGridListModule],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })
 export class Favorites {
   private recipeService = inject(RecipeService);
-  favorites = this.recipeService.favorites;
+  cardModels = this.recipeService.getCardModel();
+  favorites = this.recipeService.cardModels.filter(
+    (cardModel) => cardModel.getRecipeFavorite() === true,
+  );
 }

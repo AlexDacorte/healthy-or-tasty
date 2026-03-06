@@ -1,9 +1,12 @@
 <div class="favorites-container">
-    @if (favorites().length === 0) {
-    <p>No favorites yet</p>
-    } @else {
-    @for (recipe of favorites(); track recipe.id) {
-    <app-gallery-card [recipeData]="recipe"></app-gallery-card>
+  @if (favorites.length === 0) {
+    <p>No favorites found</p>
+  }
+  <mat-grid-list cols="2" rowHeight="2:3">
+    @for (favorite of favorites; track favorite) {
+      <mat-grid-tile colspan="1">
+        <app-gallery-card [cardModel]="favorite"></app-gallery-card>
+      </mat-grid-tile>
     }
-    }
+  </mat-grid-list>
 </div>

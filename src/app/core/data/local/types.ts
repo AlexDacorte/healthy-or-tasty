@@ -2,6 +2,7 @@ export type Recipe = {
   id: string;
   title: string;
   category: 'healthy' | 'tasty';
+  favorite: boolean;
   image: string;
   prepTime: number;
   cookTime: number;

@@ -27,7 +27,7 @@
   </div>
   <p>{{ cardModels.length }} built-in recipes</p>
 
-  <mat-grid-list class="gallery-grid" cols="2" rowHeight="1:0.8">
+  <mat-grid-list class="gallery-grid" cols="2" rowHeight="1:0.9">
     @for (cardModel of cardModels; track cardModel) {
       <mat-grid-tile colspan="1" rowspan="1">
         <app-gallery-card [cardModel]="cardModel"></app-gallery-card>
