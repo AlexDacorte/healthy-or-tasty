@@ -1,27 +1,27 @@
 <mat-card class="recipe-card" appearance="filled">
   <mat-card-header>
-    <mat-card-title class="card-title">{{ recipeData()?.title }}</mat-card-title>
+    <mat-card-title class="card-title">{{ cardModel().getRecipeTitle() }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <mat-list class="recipe-info">
       <mat-list-item>
         <mat-icon>access_time</mat-icon>
-        <span>{{ recipeData()?.cookTime }}</span>
+        <span>{{ cardModel().getCookTime() }}</span>
       </mat-list-item>
       <mat-list-item>
         <mat-icon>local_fire_department</mat-icon>
-        <span>{{ recipeData()?.calories }}</span>
+        <span>{{ cardModel().getCalories() }}</span>
       </mat-list-item>
     </mat-list>
     <img
       class="recipe-image"
       mat-card-image
-      [src]="recipeData()?.image"
-      [alt]="recipeData()?.title"
+      [src]="cardModel().getRecipeImage()"
+      [alt]="cardModel().getRecipeTitle()"
     />
     <div class="recipe-overlay"></div>
     <ul class="recipe-tags">
-      @for (tag of recipeData()?.tags; track $index) {
+      @for (tag of cardModel().getRecipeTags(); track $index) {
         <li>
           <mat-basic-chip>{{ tag }}</mat-basic-chip>
         </li>

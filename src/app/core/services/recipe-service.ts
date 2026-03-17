@@ -1,94 +1,88 @@
-import { CardModel } from './../data/local/model';
-import { Injectable, signal, computed } from '@angular/core';
-import { Recipe } from '../data/local/types';
+import { Injectable, signal } from '@angular/core';
 import { recipes } from '../data/local/recipes';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs';
-import { TitlePageType } from '../data/local/types';
+import { IRecipeService, Recipe } from '../data/local/types';
+import { CardModel } from './../data/local/model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RecipeService {
+export class RecipeService implements IRecipeService {
   private recipeData = signal<Recipe[]>(recipes);
-  filteredRecipeData = signal<Recipe[]>([]);
-  favorites = signal<Recipe[]>([]);
-  title = signal<TitlePageType>('Foodie');
-  cardModels: CardModel[];
-  constructor(private router: Router) {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.selectTitle(event.url);
-      });
-    this.getFilteredRecipes('healthy');
+  private cardModels: CardModel[];
+  recipeActiveData = signal<CardModel[]>([]);
+  constructor() {
     this.cardModels = this.recipeData().map((recipe) => new CardModel(recipe));
+
+    this.recipeActiveData.set(
+      this.cardModels.filter((cardModel) => cardModel.getRecipe().category === 'healthy'),
+    );
   }
 
-  selectTitle(url: string) {
-    switch (url) {
-      case '/':
-        this.title.set('Foodie');
-        console.log(url);
-        break;
-      case '/plan':
-        this.title.set('Plan');
-        console.log(url);
-        break;
-      case '/favorites':
-        this.title.set('Favorites');
-        console.log(url);
-        break;
-      case '/search':
-        this.title.set('Search Recipes');
-        console.log(url);
-        break;
-      case '/shopping-list':
-        this.title.set('Shopping List');
-        console.log(url);
-        break;
+  private loadRecipesFromStorage(): CardModel[] {
+    const localData = localStorage.getItem('cardModels');
+
+    if (localData) {
+      try {
+        const parsed = JSON.parse(localData);
+        return parsed.map((recipe: Recipe) => new CardModel(recipe));
+      } catch (error) {
+        console.warn('Error parsing local storage data');
+        return [];
+      }
     }
+    console.warn('No local storage data found');
+    return [];
   }
-  getFilteredRecipes(category: 'healthy' | 'tasty') {
-    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.category === category));
+  onFilteredByCategory(category: 'healthy' | 'tasty') {
+    const filterContent = this.cardModels.filter(
+      (cardModel) => cardModel.getRecipe().category === category,
+    );
+    this.recipeActiveData.set(filterContent);
   }
 
   onFilterByCuisine(cuisine: string) {
-    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.cuisine === cuisine));
+    this.recipeActiveData.set(
+      this.cardModels.filter((cardModel) => cardModel.getRecipe().cuisine === cuisine),
+    );
   }
 
   onFilterByTag(tag: string) {
-    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.tags.includes(tag)));
+    this.recipeActiveData.set(
+      this.cardModels.filter((cardModel) => cardModel.getRecipe().tags.includes(tag)),
+    );
   }
 
   onFilterByCookTime(cookTime: number) {
-    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.cookTime < cookTime));
+    this.recipeActiveData.set(
+      this.cardModels.filter((cardModel) => cardModel.getRecipe().cookTime < cookTime),
+    );
   }
 
   onFilterByCalories(calories: number) {
-    this.filteredRecipeData.set(this.recipeData().filter((recipe) => recipe.calories < calories));
+    this.recipeActiveData.set(
+      this.cardModels.filter((cardModel) => cardModel.getRecipe().calories < calories),
+    );
   }
 
-  saveToLocalStorage(recipes: Recipe[]) {
-    localStorage.setItem('recipe', JSON.stringify(recipes));
+  onFilterByFavorite(favorite: boolean) {
+    this.recipeActiveData.set(
+      this.cardModels.filter((cardModel) => cardModel.getRecipe().favorite === favorite),
+    );
+  }
+
+  saveToLocalStorage(cardModels: CardModel[]) {
+    localStorage.setItem('cardModels', JSON.stringify(cardModels));
+    this.recipeActiveData.set(cardModels);
   }
 
   getCardModel(): CardModel[] {
     return this.cardModels;
   }
-  onRecipeChange(): Recipe {
-    const currentRecipe = this.filteredRecipeData().shift()!;
-    const nonFilteredData = this.recipeData().filter((recipe) => recipe.id !== currentRecipe.id);
-    this.saveToLocalStorage(nonFilteredData);
-    return currentRecipe;
-  }
-
-  onFavoriteChange(newRecipe: Recipe) {
-    this.recipeData.update((recipes) =>
-      recipes.map((recipe) =>
-        recipe.id === newRecipe.id ? (recipe.favorite = !newRecipe.favorite) : recipe,
-      ),
+  onRecipeChange(): void {
+    const currentRecipe = this.recipeActiveData().shift()!;
+    const nonFilteredData = this.recipeActiveData().filter(
+      (cardModel) => cardModel.getRecipe().id !== currentRecipe.getRecipe().id,
     );
-    this.saveToLocalStorage(this.recipeData());
+    this.saveToLocalStorage(nonFilteredData);
   }
 }

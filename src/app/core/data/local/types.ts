@@ -1,3 +1,5 @@
+import { CardModel } from "./model";
+
 export type Recipe = {
   id: string;
   title: string;
@@ -32,3 +34,15 @@ export type PlanByDayType = {
   day: PlanDayType;
   recipes: Recipe[];
 };
+
+
+export interface IRecipeService {
+  onFilteredByCategory(category: 'healthy' | 'tasty'): void;
+  onFilterByCuisine(cuisine: string): void;
+  onFilterByTag(tag: string): void;
+  onFilterByCookTime(cookTime: number): void;
+  onFilterByCalories(calories: number): void;
+  saveToLocalStorage(cardModels: CardModel[]): void;
+  getCardModel(): CardModel[];
+  onRecipeChange(): void;
+}

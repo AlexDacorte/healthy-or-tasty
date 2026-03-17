@@ -1,7 +1,7 @@
-import { Recipe } from '@/app/core/data/local/types';
-import { RecipeCardComponent } from '@/app/shared/components/recipe-card/recipe-card';
-import { Component, signal, inject, OnInit } from '@angular/core';
+import { CardModel } from '@/app/core/data/local/model';
 import { RecipeService } from '@/app/core/services/recipe-service';
+import { RecipeCardComponent } from '@/app/shared/components/recipe-card/recipe-card';
+import { Component, computed, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -12,34 +12,27 @@ import { MatListModule } from '@angular/material/list';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit {
-  recipeData = signal<Recipe>({} as Recipe);
+export class Home {
+  cardModels = signal<CardModel[]>([]);
 
-  ngOnInit(): void {
-    this.recipeData.set(this.recipeService.onRecipeChange());
+  firstCard = computed(() => this.cardModels()[0]);
+  constructor(private recipeService: RecipeService) {
+    this.cardModels.set(this.recipeService.recipeActiveData());
   }
-  private recipeService = inject(RecipeService);
 
-  isHealthySelected: boolean = true;
-  isTastySelected: boolean = false;
+  isHealthySelected = true;
+  isTastySelected = false;
 
   getFilteredRecipes(category: 'healthy' | 'tasty') {
-    if (category === 'healthy') {
-      this.isHealthySelected = true;
-      this.isTastySelected = false;
-    } else {
-      this.isHealthySelected = false;
-      this.isTastySelected = true;
-    }
-    if (this.isHealthySelected && category === 'healthy') {
-      return;
-    } else if (this.isTastySelected && category === 'tasty') {
-      return;
-    }
-    this.recipeService.getFilteredRecipes(category);
+    this.recipeService.onFilteredByCategory(category);
   }
 
-  onFavoriteChange(recipe: Recipe) {
-    this.recipeService.onFavoriteChange(recipe);
+  onAddFavorite(cardModel: CardModel) {
+    cardModel.setRecipeFavorite(true);
+    this.recipeService.onRecipeChange();
+  }
+  onRemoveFavorite(cardModel: CardModel) {
+    cardModel.setRecipeFavorite(false);
+    this.recipeService.onRecipeChange();
   }
 }

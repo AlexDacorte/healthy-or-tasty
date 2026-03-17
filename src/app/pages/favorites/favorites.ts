@@ -11,8 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 })
 export class Favorites {
   private recipeService = inject(RecipeService);
-  cardModels = this.recipeService.getCardModel();
-  favorites = this.recipeService.cardModels.filter(
+  favorites = this.recipeService.recipeActiveData().filter(
     (cardModel) => cardModel.getRecipeFavorite() === true,
   );
 }

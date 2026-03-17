@@ -9,10 +9,10 @@ export class CardModel {
     return this.recipe.title;
   }
   getCookTime(): string {
-    return `${this.recipe.cookTime}m`;
+    return `${this.recipe.cookTime}`;
   }
   getCalories(): string {
-    return `${this.recipe.calories}cal`;
+    return `${this.recipe.calories}`;
   }
   getRecipeImage(): string {
     return this.recipe.image;
@@ -24,7 +24,7 @@ export class CardModel {
     return this.recipe.category;
   }
   getRecipePrepTime(): string {
-    return `${this.recipe.prepTime}m`;
+    return `${this.recipe.prepTime}`;
   }
   getRecipeServings(): string {
     return `${this.recipe.servings}`;
@@ -49,5 +49,8 @@ export class CardModel {
   }
   setRecipe(recipe: Recipe): void {
     this.recipe = recipe;
+  }
+  setRecipeFavorite(favorite: boolean): void {
+    this.recipe.favorite = favorite;
   }
 }

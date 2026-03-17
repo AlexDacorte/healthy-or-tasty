@@ -27,15 +27,15 @@ import { CustomInput } from '@shared/components/custom-input/custom-input';
 export class Search {
   private recipeService = inject(RecipeService);
   searchQuery = '';
-  cardModels = this.recipeService.getCardModel();
-  tags = signal(this.recipeService.getCardModel().map((CardModel) => CardModel.getRecipeTags()));
+  cardModels = this.recipeService.recipeActiveData();
+  tags = signal(this.recipeService.recipeActiveData().map((CardModel) => CardModel.getRecipeTags()));
   uniqueTags = signal(
     this.tags()
       .flat()
       .filter((tag, index, self) => self.indexOf(tag) === index),
   );
   cousines = signal(
-    this.recipeService.getCardModel().map((CardModel) => CardModel.getRecipeCuisine()),
+    this.recipeService.recipeActiveData().map((CardModel) => CardModel.getRecipeCuisine()),
   );
   uniqueCousines = signal(
     this.cousines().filter((cuisine, index, self) => self.indexOf(cuisine) === index),
