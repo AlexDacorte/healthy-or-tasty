@@ -28,7 +28,14 @@ export class Home {
   }
 
   onAddFavorite(cardModel: CardModel) {
-    cardModel.setRecipeFavorite(true);
+    this.cardModels.set(
+      this.cardModels().map((cardModel) => {
+        if (cardModel.getRecipe().id === cardModel.getRecipe().id) {
+          cardModel.setRecipeFavorite(true);
+        }
+        return cardModel;
+      }),
+    );
     this.recipeService.onRecipeChange();
   }
   onRemoveFavorite(cardModel: CardModel) {
